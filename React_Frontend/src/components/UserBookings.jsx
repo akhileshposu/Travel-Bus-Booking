@@ -11,7 +11,7 @@ useEffect(()=>{
             return
         }
         try {
-            const response = await axios.get(`http://localhost:8000/api/user/${userId}/bookings/`,
+            const response = await axios.get(`https://travel-bus-booking-3.onrender.com/api/user/${userId}/bookings/`,
                 {
                     headers:{
                         Authorization : `Token ${token}`
