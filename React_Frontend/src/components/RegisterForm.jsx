@@ -14,8 +14,7 @@ const RegisterForm = () => {
     const handleSubmit =async(e)=>{
         e.preventDefault()
         try {
-            await axios.post('https://travel-bus-booking-3.onrender.com/api/register/',
- form);
+            await axios.post('http://localhost:8000/api/register/', form);
             setMessage('Registration successful')
         } catch (error) {
             setMessage("Regestration failed", + (error.response?.data?.username || error.message))
