@@ -17,7 +17,7 @@ const LoginForm = ({ onLogin }) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const response = await axios.post('http://localhost:8000/api/login/', form)
+            const response = await axios.post('http://travel-bus-booking-6.onrender.com/api/login/', form)
             setMessage('Login Success')
             navigate("/")
 
