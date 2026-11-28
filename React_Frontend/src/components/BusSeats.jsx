@@ -41,6 +41,7 @@ const BusSeats = ({ token }) => {
                     }
                 }
             )
+            console.log(response.data)
             alert("Booking Successful")
             setSeats((prevSeats) =>
                 prevSeats.map((seat) =>

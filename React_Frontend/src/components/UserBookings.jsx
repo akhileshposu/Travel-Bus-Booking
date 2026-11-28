@@ -1,51 +1,96 @@
+
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 
-const UserBookings = ({token, userId}) => {
+const UserBookings = ({ token, userId }) => {
+
     const [bookings, setBookings] = useState([])
     const [bookingError, setBookingError] = useState(null)
 
-useEffect(()=>{
-    const fetchBookings = async()=>{
-        if(!token || !userId){
-            return
-        }
-        try {
-            const response = await axios.get(`http://localhost:8000/api/user/${userId}/bookings/`,
-                {
-                    headers:{
-                        Authorization : `Token ${token}`
-                    }
-                }
-            )
-            console.log("Booking data = ", response.data)
-            setBookings(response.data)
-            console.log("checking for user bookings =", response.data)
+    useEffect(() => {
 
-        } catch (error) {
-            console.log("fetching details failed", error)
-            setBookingError(
-                error.response?.data?.message
-            )
+        const fetchBookings = async () => {
+
+            if (!token || !userId) {
+                return
+            }
+
+            try {
+                const response = await axios.get(
+                    `http://localhost:8000/api/user/${userId}/bookings/`,
+                    {
+                        headers: {
+                            Authorization: `Token ${token}`
+                        }
+                    }
+                )
+
+                console.log("Booking data =", response.data)
+
+                setBookings(response.data)
+
+            } catch (error) {
+
+                console.log("Fetching details failed", error)
+
+                setBookingError(
+                    error.response?.data?.error ||
+                    "Unable to fetch bookings"
+                )
+            }
         }
-    }
-    fetchBookings()
-}, [userId, token])
-    
-  return (
-    <div>
-      {bookings.map((item)=>{
-        return(
-            <div className="booking-card" key={item.id}>
-                {item.user}-
-                {item.bus}-
-                {item.seat}-
-                {item.booking_time}
-            </div>
-        )
-      })}
-    </div>
-  )
+
+        fetchBookings()
+
+    }, [userId, token])
+
+    return (
+        <div>
+
+            <h2 style={{ fontSize: "50px" }}>My Bookings</h2>
+
+            {bookingError && <p>{bookingError}</p>}
+
+            {bookings.length > 0 ? (
+
+                bookings.map((booking) => (
+
+                    <div
+                        key={booking.id}
+                        style={{
+                            border: "2px solid gray",
+                            width: "450px",
+                            padding: "20px",
+                            marginBottom: "20px"
+                        }}
+                    >
+
+                        <h3>{booking.bus.bus_name}</h3>
+
+                        <p>Bus Number: {booking.bus.number}</p>
+
+                        <p>From: {booking.origin}</p>
+
+                        <p>To: {booking.destination}</p>
+
+                        <p>Price: ₹{booking.price}</p>
+
+                        <p>Seat: {booking.seat.seat_number}</p>
+
+                        <p>User: {booking.user}</p>
+
+                    </div>
+
+                ))
+
+            ) : (
+
+                !bookingError && <p>No bookings found</p>
+
+            )}
+
+        </div>
+    )
 }
 
 export default UserBookings

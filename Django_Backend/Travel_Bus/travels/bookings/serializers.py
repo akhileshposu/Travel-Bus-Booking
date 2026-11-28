@@ -55,9 +55,9 @@ class BookingSerializer(serializers.ModelSerializer):
     bus = BusSummarySerializer(read_only=True)
     seat = SeatSerializer(read_only=True)
     user = serializers.StringRelatedField()
-    price = serializers.StringRelatedField()
-    origin = serializers.StringRelatedField()
-    destination = serializers.StringRelatedField()
+    price = serializers.ReadOnlyField(source='bus.price')
+    origin = serializers.ReadOnlyField(source='bus.origin')
+    destination = serializers.ReadOnlyField(source='bus.destination')
 
 
     class Meta:

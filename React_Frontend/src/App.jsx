@@ -35,7 +35,7 @@ const handleLogout = ()=>{
       <Routes>
         <Route path='/' element={<BusList />} />
         <Route path='/register' element={<RegisterForm />} />
-        <Route path='/login' element={<LoginForm onLogin = {handleLogin}/>} />
+        {/* <Route path='/login' element={<LoginForm onLogin = {handleLogin}/>} /> */}
         <Route path='/login' element={<LoginForm onLogin = {handleLogin}/>} />
         <Route path='/bus/:busId' element={<BusSeats token={token}/>} />
         <Route path='/my-bookings' element={<UserBookings token={token} userId={userId}/>} />

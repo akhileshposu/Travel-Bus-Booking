@@ -14,19 +14,24 @@ const Wrapper = ({ token, handleLogout, children }) => {
         <h2 className="brand">BUS TRAVEL BOOKINGS</h2>
 
         {token ? (
+          <>
 
-          <button onClick={logout}>Logout</button>
-
-        ) :
-        <>
-          <Link to="/login">
-            <button>Login</button>
-          </Link>
-          <Link to="/register">
-            <button>Register</button>
-          </Link>
+            <button onClick={logout} style={{ color: "white" }}>Logout</button>
+            <Link to="/my-bookings">
+              <button style={{ color: "white" }}>My Bookings</button>
+            </Link>
           </>
-        }
+
+        ) :(
+          <>
+            <Link to="/login">
+              <button>Login</button>
+            </Link>
+            <Link to="/register">
+              <button>Register</button>
+            </Link>
+          </>
+        )}
       </div>
       <main className="main-content">{children}</main>
     </div>

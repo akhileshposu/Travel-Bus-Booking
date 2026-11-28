@@ -8,9 +8,23 @@ class BusAdmin(admin.ModelAdmin):
 class SeatAdmin(admin.ModelAdmin):
     list_display = ('seat_number', 'bus', 'is_booked')
 
+@admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
-    list_display = ('user', 'bus', 'seat', 'booking_time', 'origin','price')
+    list_display = [
+        'id',
+        'user',
+        'bus',
+        'seat',
+        'get_origin',
+        'get_price'
+    ]
 
-admin.site.register(Bus, BusAdmin)
-admin.site.register(Seat, SeatAdmin)
-admin.site.register(Booking, BookingAdmin)
+    def get_origin(self, obj):
+        return obj.bus.origin
+
+    def get_price(self, obj):
+        return obj.bus.price
+
+    get_origin.short_description = 'Origin'
+    get_price.short_description = 'Price'
+

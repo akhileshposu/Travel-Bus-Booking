@@ -1,8 +1,10 @@
 import React, { use, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const LoginForm = ({ onLogin }) => {
+    const navigate = useNavigate()
     const [form, setForm] = useState({
         username: '', password: ''
     })
@@ -17,6 +19,8 @@ const LoginForm = ({ onLogin }) => {
         try {
             const response = await axios.post('http://localhost:8000/api/login/', form)
             setMessage('Login Success')
+            navigate("/")
+
 
             if (onLogin) {
                 onLogin(response.data.token, response.data.user_id)

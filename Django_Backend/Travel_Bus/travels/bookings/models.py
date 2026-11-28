@@ -39,12 +39,12 @@ class Booking(models.Model):
     def __str__(self):
         return f"{self.user.username}-{self.bus.bus_name}-{self.bus.start_time}-{self.bus.reach_time}-{self.seat.seat_number}"
     
-    @property
-    def price(self):
-        return self.bus.price
-    @property
-    def origin(self):
-        return self.bus.origin
-    @property
-    def destination(self):
-        return self.bus.destination
+    # @property
+    # def price(self):
+    #     return self.bus.price
+    # @property
+    # def origin(self):
+    #     return self.bus.origin
+    # @property
+    # def destination(self):
+    #     return self.bus.destination

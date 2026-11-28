@@ -41,7 +41,7 @@ class BusListCreateView(generics.ListCreateAPIView):
 # class BusListCreateView(APIView):
 #     def get(self, request):
 #         a = Bus.objects.all()
-#         b = BusSerializer(a, many=True)
+#         b = BusSerializer(a, many=True,context={'request': request})
 #         return Response(
 #             b.data
 #         ,status=status.HTTP_200_OK)
