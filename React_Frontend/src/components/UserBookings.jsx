@@ -17,7 +17,7 @@ const UserBookings = ({ token, userId }) => {
 
             try {
                 const response = await axios.get(
-                    `http://travel-bus-booking-6.onrender.com/api/user/${userId}/bookings/`,
+                    `http://travel-bus-booking-5.onrender.com/api/user/${userId}/bookings/`,
                     {
                         headers: {
                             Authorization: `Token ${token}`
